@@ -23,6 +23,8 @@ func (Dealer) InitialCards(gameMode string) int {
 	switch gameMode {
 	case "21":
 		return 2
+	case "poker":
+		return 5
 	}
 	return 0
 }
