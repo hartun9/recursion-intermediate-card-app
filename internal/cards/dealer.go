@@ -19,6 +19,7 @@ func (Dealer) StartGame(table Table) [][]*Card {
 	return playerCards
 }
 
+// InitialCards gameModeに応じて手札の数を返す
 func (Dealer) InitialCards(gameMode string) int {
 	switch gameMode {
 	case "21":
