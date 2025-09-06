@@ -8,7 +8,8 @@ import (
 
 func main() {
 	dealer := cards.Dealer{}
-	game1 := dealer.StartGame(4)
+	table1 := cards.Table{AmountOfPlayers: 4}
+	game1 := dealer.StartGame(table1)
 	for _, card := range game1[0] {
 		fmt.Println(card.GetCardString())
 	}
