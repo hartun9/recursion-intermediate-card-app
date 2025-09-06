@@ -6,14 +6,14 @@ type Dealer struct{}
 func (Dealer) StartGame(amountOfPlayers int) [][2]*Card {
 	deck := NewDeck()
 	deck.ShuffleDeck()
-	var table [][2]*Card
+	var playerCards [][2]*Card
 	for i := 0; i < amountOfPlayers; i++ {
 		var playerHand [2]*Card
 		for j := 0; j < 2; j++ {
 			card1 := deck.Draw()
 			playerHand[j] = card1
 		}
-		table = append(table, playerHand)
+		playerCards = append(playerCards, playerHand)
 	}
-	return table
+	return playerCards
 }
