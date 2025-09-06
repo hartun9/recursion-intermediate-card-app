@@ -1,16 +1,17 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/hartun9/recursion-intermediate-card-app/internal/cards"
 )
 
 func main() {
 	dealer := cards.Dealer{}
-	table1 := cards.Table{AmountOfPlayers: 4, GameMode: "poker"}
+
+	table1 := cards.Table{AmountOfPlayers: 3, GameMode: "21"}
 	game1 := dealer.StartGame(table1)
-	for _, card := range game1[0] {
-		fmt.Println(card.GetCardString())
-	}
+	dealer.PrintTableInformation(game1, table1)
+
+	table2 := cards.Table{AmountOfPlayers: 4, GameMode: "poker"}
+	game2 := dealer.StartGame(table2)
+	dealer.PrintTableInformation(game2, table2)
 }

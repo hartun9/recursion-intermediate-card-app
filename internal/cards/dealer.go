@@ -1,5 +1,10 @@
 package cards
 
+import (
+	"fmt"
+	"strconv"
+)
+
 type Dealer struct{}
 
 // StartGame 参加人数を受け取り、それぞれのプレイヤーにカードを配る
@@ -28,4 +33,16 @@ func (Dealer) InitialCards(gameMode string) int {
 		return 5
 	}
 	return 0
+}
+
+func (Dealer) PrintTableInformation(playerCards [][]*Card, table Table) {
+	fmt.Println("Amount of players: " + strconv.Itoa(table.AmountOfPlayers) + "... Game mode: " + table.GameMode + ". At this table: ")
+
+	for i, playerCard := range playerCards {
+		fmt.Println("Player " + strconv.Itoa(i+1) + " hand is: ")
+		for _, card := range playerCard {
+			fmt.Print(card.GetCardString())
+		}
+		fmt.Println()
+	}
 }
