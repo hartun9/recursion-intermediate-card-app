@@ -45,3 +45,14 @@ func PrintTableInformation(playerCards [][]*cards.Card, table cards.Table) {
 		fmt.Println()
 	}
 }
+
+func Score21Individual(cards []*cards.Card) int {
+	var value int
+	for _, card := range cards {
+		value += card.IntValue
+	}
+	if value > 21 {
+		return 0
+	}
+	return value
+}
