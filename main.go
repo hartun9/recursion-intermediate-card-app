@@ -1,16 +1,22 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/hartun9/recursion-intermediate-card-app/internal/cards"
 	"github.com/hartun9/recursion-intermediate-card-app/internal/dealer"
 )
 
 func main() {
-	table1 := cards.Table{AmountOfPlayers: 3, GameMode: "21"}
-	game1 := dealer.StartGame(table1)
-	dealer.PrintTableInformation(game1, table1)
+	playerA := []*cards.Card{
+		{"♦︎", "A", 1},
+		{"♦︎", "J", 11},
+	}
+	playerB := []*cards.Card{
+		{"♦︎", "9", 9},
+		{"♦︎", "K", 13},
+	}
 
-	table2 := cards.Table{AmountOfPlayers: 4, GameMode: "poker"}
-	game2 := dealer.StartGame(table2)
-	dealer.PrintTableInformation(game2, table2)
+	fmt.Println(dealer.Score21Individual(playerA))
+	fmt.Println(dealer.Score21Individual(playerB))
 }
