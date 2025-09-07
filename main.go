@@ -6,8 +6,6 @@ import (
 )
 
 func main() {
-	dealer := dealer.Dealer{}
-
 	table1 := cards.Table{AmountOfPlayers: 3, GameMode: "21"}
 	game1 := dealer.StartGame(table1)
 	dealer.PrintTableInformation(game1, table1)
