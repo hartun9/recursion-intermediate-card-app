@@ -3,13 +3,14 @@ package main
 import (
 	"fmt"
 
-	"github.com/hartun9/recursion-intermediate-card-app/internal/helper"
+	"github.com/hartun9/recursion-intermediate-card-app/internal/cards"
+	"github.com/hartun9/recursion-intermediate-card-app/internal/dealer"
 )
 
 func main() {
-	arr1 := []int{1, 9, 19, 3, 4, 6}
-	fmt.Println(helper.MaxInArrayIndex(arr1))
+	table1 := cards.Table{AmountOfPlayers: 4, GameMode: "21"}
+	game1 := dealer.StartGame(table1)
+	dealer.PrintTableInformation(game1, table1)
 
-	arr2 := []int{5, 2, 1, 3, 5, 5}
-	fmt.Println(helper.MaxInArrayIndex(arr2))
+	fmt.Println(dealer.WinnerOf21(game1))
 }

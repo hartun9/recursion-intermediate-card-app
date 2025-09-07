@@ -5,6 +5,7 @@ import (
 	"strconv"
 
 	"github.com/hartun9/recursion-intermediate-card-app/internal/cards"
+	"github.com/hartun9/recursion-intermediate-card-app/internal/helper"
 )
 
 // StartGame 参加人数を受け取り、それぞれのプレイヤーにカードを配る
@@ -55,4 +56,24 @@ func Score21Individual(cards []*cards.Card) int {
 		return 0
 	}
 	return value
+}
+
+func WinnerOf21(playerCardsList [][]*cards.Card) string {
+	points := make([]int, len(playerCardsList))
+	pointCount := make(map[int]int)
+
+	for i, playerCards := range playerCardsList {
+		point := Score21Individual(playerCards)
+		points[i] = point
+		pointCount[point]++
+	}
+
+	winnerIndex := helper.MaxInArrayIndex(points)
+	if pointCount[points[winnerIndex]] > 1 {
+		return "It is a draw "
+	} else if pointCount[points[winnerIndex]] >= 0 {
+		return "player " + strconv.Itoa(winnerIndex+1) + " is the winner"
+	} else {
+		return "No winners.."
+	}
 }
