@@ -21,8 +21,6 @@ func generateDeck() *[]Card {
 	for _, suit := range suits {
 		for j, value := range values {
 			newDeck = append(newDeck, Card{Suit: suit, Value: value, IntValue: j + 1})
-			c := Card{Suit: suit, Value: value, IntValue: j + 1}
-			fmt.Println(c.GetCardString())
 		}
 	}
 	return &newDeck
