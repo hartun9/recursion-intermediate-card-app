@@ -10,7 +10,7 @@ import (
 
 // StartGame 参加人数を受け取り、それぞれのプレイヤーにカードを配る
 func StartGame(table cards.Table) [][]*cards.Card {
-	deck := cards.NewDeck()
+	deck := cards.NewDeck(table)
 	deck.ShuffleDeck()
 	var playerCards [][]*cards.Card
 	for i := 0; i < table.AmountOfPlayers; i++ {
