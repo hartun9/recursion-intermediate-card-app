@@ -2,10 +2,11 @@ package main
 
 import (
 	"github.com/hartun9/recursion-intermediate-card-app/internal/cards"
+	"github.com/hartun9/recursion-intermediate-card-app/internal/dealer"
 )
 
 func main() {
-	dealer := cards.Dealer{}
+	dealer := dealer.Dealer{}
 
 	table1 := cards.Table{AmountOfPlayers: 3, GameMode: "21"}
 	game1 := dealer.StartGame(table1)
