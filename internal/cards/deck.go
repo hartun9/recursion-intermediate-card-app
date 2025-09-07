@@ -9,18 +9,34 @@ type Deck struct {
 	Deck []Card
 }
 
-func NewDeck() *Deck {
-	return &Deck{Deck: *generateDeck()}
+func NewDeck(table Table) *Deck {
+	return &Deck{Deck: *generateDeck(table)}
 }
 
-func generateDeck() *[]Card {
+func generateDeck(table Table) *[]Card {
 	var newDeck []Card
 	suits := []string{"♣", "♦", "♥", "♠"}
 	values := []string{"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"}
+	blackJack := map[string]int{
+		"A": 1,
+		"J": 10,
+		"Q": 10,
+		"K": 10,
+	}
 
 	for _, suit := range suits {
 		for j, value := range values {
-			newDeck = append(newDeck, Card{Suit: suit, Value: value, IntValue: j + 1})
+			var intValue int
+			if table.GameMode == "21" {
+				if num, found := blackJack[value]; found {
+					intValue = num
+				} else {
+					intValue = j + 1
+				}
+			} else {
+				intValue = j + 1
+			}
+			newDeck = append(newDeck, Card{Suit: suit, Value: value, IntValue: intValue})
 		}
 	}
 	return &newDeck
