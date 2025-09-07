@@ -77,3 +77,12 @@ func WinnerOf21(playerCardsList [][]*cards.Card) string {
 		return "No winners.."
 	}
 }
+
+func CheckWinner(playerCardsList [][]*cards.Card, table cards.Table) string {
+	switch table.GameMode {
+	case "21":
+		return WinnerOf21(playerCardsList)
+	default:
+		return "no game"
+	}
+}
