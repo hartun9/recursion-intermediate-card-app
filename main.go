@@ -3,20 +3,13 @@ package main
 import (
 	"fmt"
 
-	"github.com/hartun9/recursion-intermediate-card-app/internal/cards"
-	"github.com/hartun9/recursion-intermediate-card-app/internal/dealer"
+	"github.com/hartun9/recursion-intermediate-card-app/internal/helper"
 )
 
 func main() {
-	playerA := []*cards.Card{
-		{"♦︎", "A", 1},
-		{"♦︎", "J", 11},
-	}
-	playerB := []*cards.Card{
-		{"♦︎", "9", 9},
-		{"♦︎", "K", 13},
-	}
+	arr1 := []int{1, 9, 19, 3, 4, 6}
+	fmt.Println(helper.MaxInArrayIndex(arr1))
 
-	fmt.Println(dealer.Score21Individual(playerA))
-	fmt.Println(dealer.Score21Individual(playerB))
+	arr2 := []int{5, 2, 1, 3, 5, 5}
+	fmt.Println(helper.MaxInArrayIndex(arr2))
 }
