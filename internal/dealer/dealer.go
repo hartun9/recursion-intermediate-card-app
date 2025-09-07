@@ -1,21 +1,20 @@
-package cards
+package dealer
 
 import (
 	"fmt"
 	"strconv"
+
+	"github.com/hartun9/recursion-intermediate-card-app/internal/cards"
 )
 
-type Dealer struct{}
-
 // StartGame 参加人数を受け取り、それぞれのプレイヤーにカードを配る
-func (Dealer) StartGame(table Table) [][]*Card {
-	deck := NewDeck()
+func StartGame(table cards.Table) [][]*cards.Card {
+	deck := cards.NewDeck()
 	deck.ShuffleDeck()
-	var playerCards [][]*Card
+	var playerCards [][]*cards.Card
 	for i := 0; i < table.AmountOfPlayers; i++ {
-		var playerHand []*Card
-		dealer := Dealer{}
-		for j := 0; j < dealer.InitialCards(table.GameMode); j++ {
+		var playerHand []*cards.Card
+		for j := 0; j < InitialCards(table.GameMode); j++ {
 			card1 := deck.Draw()
 			playerHand = append(playerHand, card1)
 		}
@@ -25,7 +24,7 @@ func (Dealer) StartGame(table Table) [][]*Card {
 }
 
 // InitialCards gameModeに応じて手札の数を返す
-func (Dealer) InitialCards(gameMode string) int {
+func InitialCards(gameMode string) int {
 	switch gameMode {
 	case "21":
 		return 2
@@ -35,7 +34,7 @@ func (Dealer) InitialCards(gameMode string) int {
 	return 0
 }
 
-func (Dealer) PrintTableInformation(playerCards [][]*Card, table Table) {
+func PrintTableInformation(playerCards [][]*cards.Card, table cards.Table) {
 	fmt.Println("Amount of players: " + strconv.Itoa(table.AmountOfPlayers) + "... Game mode: " + table.GameMode + ". At this table: ")
 
 	for i, playerCard := range playerCards {
