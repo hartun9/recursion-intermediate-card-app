@@ -31,6 +31,8 @@ func InitialCards(gameMode string) int {
 		return 2
 	case "poker":
 		return 5
+	case "pair_of_cards":
+		return 5
 	}
 	return 0
 }
