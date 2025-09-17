@@ -1,8 +1,6 @@
 package game
 
 import (
-	"strconv"
-
 	"github.com/hartun9/recursion-intermediate-card-app/internal/cards"
 )
 
@@ -20,24 +18,13 @@ type Player struct {
 }
 
 func WinnerPairOfCards(player1 []*cards.Card, player2 []*cards.Card) string {
-	var cards1 []string
-	var cards2 []string
-
-	for _, card := range player1 {
-		cards1 = append(cards1, card.Suit+card.Value)
-	}
-
-	for _, card := range player2 {
-		cards2 = append(cards2, card.Suit+card.Value)
-	}
-
-	p1 := newPlayer(cards1)
-	p2 := newPlayer(cards2)
+	p1 := newPlayer(player1)
+	p2 := newPlayer(player2)
 
 	return winnerPairOfCardsHelper(p1, p2)
 }
 
-func newPlayer(playerCards []string) *Player {
+func newPlayer(playerCards []*cards.Card) *Player {
 	rankCount := newRankCount(playerCards)
 	return &Player{
 		rankCount: rankCount,
@@ -72,25 +59,10 @@ func winnerPairOfCardsHelper(p1 *Player, p2 *Player) string {
 	}
 }
 
-func newRankCount(playerCards []string) (rankCount map[int]int) {
+func newRankCount(playerCards []*cards.Card) (rankCount map[int]int) {
 	rankCount = make(map[int]int)
 	for _, card := range playerCards {
-		cardRune := []rune(card)
-		rank := string(cardRune[1:])
-		rankNum := 0
-		switch rank {
-		case "A":
-			rankNum = 14
-		case "K":
-			rankNum = 13
-		case "Q":
-			rankNum = 12
-		case "J":
-			rankNum = 11
-		default:
-			rankNum, _ = strconv.Atoi(rank)
-		}
-		rankCount[rankNum]++
+		rankCount[card.IntValue]++
 	}
 	return rankCount
 }
