@@ -8,15 +8,15 @@ import (
 )
 
 func main() {
-	table1 := cards.Table{AmountOfPlayers: 1, GameMode: "poker"}
-	game1 := dealer.StartGame(table1)
+	table1 := cards.NewTable(1, "poker")
+	game1 := dealer.StartGame(*table1)
 
-	table2 := cards.Table{AmountOfPlayers: 3, GameMode: "21"}
-	game2 := dealer.StartGame(table2)
+	table2 := cards.NewTable(3, "21")
+	game2 := dealer.StartGame(*table2)
 
-	dealer.PrintTableInformation(game1, table1)
-	fmt.Println(dealer.CheckWinner(game1, table1))
+	dealer.PrintTableInformation(game1, *table1)
+	fmt.Println(dealer.CheckWinner(game1, *table1))
 
-	dealer.PrintTableInformation(game2, table2)
-	fmt.Println(dealer.CheckWinner(game2, table2))
+	dealer.PrintTableInformation(game2, *table2)
+	fmt.Println(dealer.CheckWinner(game2, *table2))
 }
