@@ -13,29 +13,48 @@ func NewDeck(table Table) *Deck {
 	return &Deck{Deck: *generateDeck(table)}
 }
 
+func numForGame(gameMode string, j int, value string) int {
+	var gameNumMap map[string]int
+	hasGameNumMap := false
+	switch gameMode {
+	case "21":
+		gameNumMap = map[string]int{
+			"A": 1,
+			"J": 10,
+			"Q": 10,
+			"K": 10,
+		}
+		hasGameNumMap = true
+	case "pair_of_cards":
+		gameNumMap = map[string]int{
+			"A": 14,
+			"K": 13,
+			"Q": 12,
+			"J": 11,
+		}
+		hasGameNumMap = true
+	}
+	var intValue int
+	if hasGameNumMap {
+		if num, found := gameNumMap[value]; found {
+			intValue = num
+		} else {
+			intValue = j + 1
+		}
+	} else {
+		intValue = j + 1
+	}
+	return intValue
+}
+
 func generateDeck(table Table) *[]Card {
 	var newDeck []Card
 	suits := []string{"♣", "♦", "♥", "♠"}
 	values := []string{"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"}
-	blackJack := map[string]int{
-		"A": 1,
-		"J": 10,
-		"Q": 10,
-		"K": 10,
-	}
 
 	for _, suit := range suits {
 		for j, value := range values {
-			var intValue int
-			if table.GameMode == "21" {
-				if num, found := blackJack[value]; found {
-					intValue = num
-				} else {
-					intValue = j + 1
-				}
-			} else {
-				intValue = j + 1
-			}
+			intValue := numForGame(table.GameMode, j, value)
 			newDeck = append(newDeck, Card{Suit: suit, Value: value, IntValue: intValue})
 		}
 	}
