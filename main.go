@@ -14,9 +14,15 @@ func main() {
 	table2 := cards.NewTable(3, "21")
 	game2 := dealer.StartGame(*table2)
 
+	table3 := cards.NewTable(2, "pair_of_cards")
+	game3 := dealer.StartGame(*table3)
+
 	dealer.PrintTableInformation(game1, *table1)
 	fmt.Println(dealer.CheckWinner(game1, *table1))
 
 	dealer.PrintTableInformation(game2, *table2)
 	fmt.Println(dealer.CheckWinner(game2, *table2))
+
+	dealer.PrintTableInformation(game3, *table3)
+	fmt.Println(dealer.CheckWinner(game3, *table3))
 }
