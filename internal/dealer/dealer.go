@@ -5,6 +5,7 @@ import (
 	"strconv"
 
 	"github.com/hartun9/recursion-intermediate-card-app/internal/cards"
+	"github.com/hartun9/recursion-intermediate-card-app/internal/game"
 	"github.com/hartun9/recursion-intermediate-card-app/internal/helper"
 )
 
@@ -84,6 +85,8 @@ func CheckWinner(playerCardsList [][]*cards.Card, table cards.Table) string {
 	switch table.GameMode {
 	case "21":
 		return WinnerOf21(playerCardsList)
+	case "pair_of_cards":
+		return game.WinnerPairOfCards(playerCardsList[0], playerCardsList[1])
 	default:
 		return "no game"
 	}
