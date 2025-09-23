@@ -25,6 +25,12 @@ func TestWinnerPairOfCards(t *testing.T) {
 			p2:   []int{4, 11, 11, 12, 3},
 			want: "player 2 is the winner",
 		},
+		{
+			name: "ペアの枚数が同じで、player 1 の rank が高い",
+			p1:   []int{4, 7, 7, 12, 11},
+			p2:   []int{7, 7, 13, 12, 2},
+			want: "player 2 is the winner",
+		},
 	}
 
 	for _, tt := range tests {
